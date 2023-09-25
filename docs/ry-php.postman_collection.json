@@ -1,0 +1,2280 @@
+{
+	"info": {
+		"_postman_id": "358d4dd1-331d-4ce9-9d8f-87e5cce9ec4e",
+		"name": "ry-php",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "3491005",
+		"_collection_link": "https://lively-satellite-5550.postman.co/workspace/qjfit~13fa4e8e-73ae-4d67-a2f8-70e6c33855fa/collection/3491005-358d4dd1-331d-4ce9-9d8f-87e5cce9ec4e?action=share&source=collection_link&creator=3491005"
+	},
+	"item": [
+		{
+			"name": "login",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\"username\":\"admin\",\"password\":\"123456\"}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://127.0.0.1:8090/sys_user/login",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8090",
+					"path": [
+						"sys_user",
+						"login"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "login",
+					"originalRequest": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\"username\":\"admin\",\"password\":\"123456\"}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://127.0.0.1:8090/sys_user/login",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "8090",
+							"path": [
+								"sys_user",
+								"login"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Server",
+							"value": "nginx/1.19.10"
+						},
+						{
+							"key": "Date",
+							"value": "Wed, 14 Jun 2023 00:26:28 GMT"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json",
+							"name": "Content-Type",
+							"description": "",
+							"type": "text"
+						},
+						{
+							"key": "Transfer-Encoding",
+							"value": "chunked"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						},
+						{
+							"key": "X-Powered-By",
+							"value": "PHP/7.3.24-(to be removed in future macOS)"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"success\": true,\n    \"data\": {\n        \"user_id\": \"1\",\n        \"dept_id\": \"103\",\n        \"user_name\": \"admin\",\n        \"nick_name\": \"若依\",\n        \"user_type\": \"00\",\n        \"email\": \"ry@163.com\",\n        \"phonenumber\": \"15888888888\",\n        \"sex\": \"1\",\n        \"avatar\": \"\",\n        \"status\": \"0\",\n        \"del_flag\": \"0\",\n        \"login_ip\": \"127.0.0.1\",\n        \"login_date\": \"2023-06-13 10:07:12\",\n        \"create_by\": \"admin\",\n        \"create_time\": \"2023-06-12 16:25:26\",\n        \"update_by\": \"\",\n        \"update_time\": null,\n        \"remark\": \"管理员\",\n        \"logintoken\": 1686702388,\n        \"en_user_id\": \"XzIAFlwwBDAFawJrBG8HP1w0AHZTa1AkVmcKdAETAjQFZwVoDzJbPABsUTUEMwNqVmw=\",\n        \"token\": \"XzIAFlwwBDAFawJrBG8HP1w0AHZTa1AkVmcKdAETAjQFZwVoDzJbPABsUTUEMwNqVmw=\"\n    },\n    \"code\": 200\n}"
+				}
+			]
+		},
+		{
+			"name": "getInfo",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "CGVSRAZqBTFRP1E4Bm1Sal01BHJdZVImU2IKdAASU2UFZwNuATxSNFszDG9SbwBlWW4=",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://127.0.0.1:8090/sys_user/getInfo",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8090",
+					"path": [
+						"sys_user",
+						"getInfo"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "get_profile_info",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "XDEBFwNvVmJUOlY/VD9RaQ1lAHZVbQt/WWhXKQYUWG4GZAxhATxUMghhDGpWag9tU2M=",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://127.0.0.1:8090/sys_user/get_profile_info",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8090",
+					"path": [
+						"sys_user",
+						"get_profile_info"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "update_profile_info",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "DWAAFl0xDztZN143UzhSalszUiQEPFElV2YBf1NBUWcBYwZrATxQN10xVjNVaAVnUGA=",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"userName\": \"admin\",\n    \"phonenumber\": \"15888888888\",\n    \"email\": \"ry@163.com\",\n    \"nickName\":\"netwolf\",\n    \"remark\":\"管理员账号\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://127.0.0.1:8090/sys_user/update_profile_info",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8090",
+					"path": [
+						"sys_user",
+						"update_profile_info"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "update_profile_password",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "DWAAFl0xDztZN143UzhSalszUiQEPFElV2YBf1NBUWcBYwZrATxQN10xVjNVaAVnUGA=",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"oldPassword\": \"123456\",\n    \"newPassword\": \"123456\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://127.0.0.1:8090/sys_user/update_profile_password",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8090",
+					"path": [
+						"sys_user",
+						"update_profile_password"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "get_sys_user_list",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "DGEMGlU5BDBQPgNqUzhXb1w0AXdcZAVxVWRRLwYUBzEGZARpAD1XMFg1B2hWZANjWWk=",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://127.0.0.1:8090/sys_user/get_sys_user_list",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8090",
+					"path": [
+						"sys_user",
+						"get_sys_user_list"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "get_user_role",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "DGEMGlU5BDBQPgNqUzhXb1w0AXdcZAVxVWRRLwYUBzEGZARpAD1XMFg1B2hWZANjWWk=",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://127.0.0.1:8090/sys_user/get_user_role/1",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8090",
+					"path": [
+						"sys_user",
+						"get_user_role",
+						"1"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "update_user_role",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "DGEMGlU5BDBQPgNqUzhXb1w0AXdcZAVxVWRRLwYUBzEGZARpAD1XMFg1B2hWZANjWWk=",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\"userId\":2,\"roleIds\":\"2,3\"}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://127.0.0.1:8090/sys_user/update_user_role",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8090",
+					"path": [
+						"sys_user",
+						"update_user_role"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "get_sys_user_info",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "DGEMGlU5BDBQPgNqUzhXb1w0AXdcZAVxVWRRLwYUBzEGZARpAD1XMFg1B2hWZANjWWk=",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://127.0.0.1:8090/sys_user/get_sys_user_info/2",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8090",
+					"path": [
+						"sys_user",
+						"get_sys_user_info",
+						"2"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "update_sys_user",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "DGEMGlU5BDBQPgNqUzhXb1w0AXdcZAVxVWRRLwYUBzEGZARpAD1XMFg1B2hWZANjWWk=",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\"userName\":\"netwolf1\",\"phonenumber\":\"13566778877\",\"email\":\"123@163.com\",\"nickName\":\"测试人员\",\"deptId\":105,\"userId\":3}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://127.0.0.1:8090/sys_user/update_sys_user",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8090",
+					"path": [
+						"sys_user",
+						"update_sys_user"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "reset_user_password",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "XDENG1U5AzdRP1I7AWpWblw0A3VdZQF1VWQBfwUXVWNSMFU4XGEFYgtlDG8EOQVnAzQ=",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"userId\": \"3\",\n    \"password\": \"123456\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://127.0.0.1:8090/sys_user/reset_user_password",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8090",
+					"path": [
+						"sys_user",
+						"reset_user_password"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "reset_self_password",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "DmMMGgZqVGAAbgJrAWoEPFoyUSdcZAp+BzYBfwQWUWcCYAdqDjMGYQFvUjEEM1Q8VW8=",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"password\": \"123456\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://127.0.0.1:8090/sys_user/reset_self_password",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8090",
+					"path": [
+						"sys_user",
+						"reset_self_password"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "update_user_password",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "XDENG1U5AzdRP1I7AWpWblw0A3VdZQF1VWQBfwUXVWNSMFU4XGEFYgtlDG8EOQVnAzQ=",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"userId\":3,\n    \"oldPassword\": \"123456\",\n    \"password\": \"123456\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://127.0.0.1:8090/sys_user/update_user_password",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8090",
+					"path": [
+						"sys_user",
+						"update_user_password"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "update_user_status",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "XDENG1U5AzdRP1I7AWpWblw0A3VdZQF1VWQBfwUXVWNSMFU4XGEFYgtlDG8EOQVnAzQ=",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\"userId\":3,\"status\":1}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://127.0.0.1:8090/sys_user/update_user_status",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8090",
+					"path": [
+						"sys_user",
+						"update_user_status"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "delete_sys_user",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "DGEMGlU5BDBQPgNqUzhXb1w0AXdcZAVxVWRRLwYUBzEGZARpAD1XMFg1B2hWZANjWWk=",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://127.0.0.1:8090/sys_user/delete_sys_user/3",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8090",
+					"path": [
+						"sys_user",
+						"delete_sys_user",
+						"3"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "logout",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "CWQEElQ4BDBQPlc+UjlfZ1szUSdWblElUWBRL1JAAzUFZ1Y7CzZVM101AmBQZAFgWWs=",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://127.0.0.1:8090/sys_user/logout",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8090",
+					"path": [
+						"sys_user",
+						"logout"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "get_menu_list",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "CGVSRAZqBTFRP1E4Bm1Sal01BHJdZVImU2IKdAASU2UFZwNuATxSNFszDG9SbwBlWW4=",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://127.0.0.1:8090/sys_menu/get_menu_list",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8090",
+					"path": [
+						"sys_menu",
+						"get_menu_list"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "get_menu",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "DWAMGgZqAzdXOQduAGtVbVw0BXNdZQdzV2YGeAcVVmBXNVY7XWAAZlw0AmNdbgJrADE=",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://127.0.0.1:8090/sys_menu/get_menu/1085",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8090",
+					"path": [
+						"sys_menu",
+						"get_menu",
+						"1085"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "delete_menu",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "WzYAFlwwVWFRPwRtBG8FPQ9nUiRXbwN3V2ZQLgASBTNbOQBtDzIHYQBoB2hdagZhVW8=",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "menuIds",
+							"value": "1096",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "http://127.0.0.1:8090/sys_menu/delete_menu/1096",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8090",
+					"path": [
+						"sys_menu",
+						"delete_menu",
+						"1096"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "select_menu_tree",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "WzYAFlwwVWFRPwRtBG8FPQ9nUiRXbwN3V2ZQLgASBTNbOQBtDzIHYQBoB2hdagZhVW8=",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "menuIds",
+							"value": "1096",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "http://127.0.0.1:8090/sys_menu/select_menu_tree",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8090",
+					"path": [
+						"sys_menu",
+						"select_menu_tree"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "getRouters Copy",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "WzYAFlwwVWFRPwRtBG8FPQ9nUiRXbwN3V2ZQLgASBTNbOQBtDzIHYQBoB2hdagZhVW8=",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "menuIds",
+							"value": "1096",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "http://127.0.0.1:8090/sys_menu/delete_menu/1096",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8090",
+					"path": [
+						"sys_menu",
+						"delete_menu",
+						"1096"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "get_menu_list_by_roleId",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "DWAMGgZqAzdXOQduAGtVbVw0BXNdZQdzV2YGeAcVVmBXNVY7XWAAZlw0AmNdbgJrADE=",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://127.0.0.1:8090/sys_menu/get_menu_list_by_roleId/2",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8090",
+					"path": [
+						"sys_menu",
+						"get_menu_list_by_roleId",
+						"2"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "update_menu",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "AWxSRFwwDjoEalI7XTZWbg1lAXcBOVcjBTRXKVBCUmRSMA1gXWBbPQ9nUjwENgdgVWY=",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\"menuName\":\"测试菜单\",\"parentId\":1075,\"orderNum\":4,\"isFrame\":1,\"menuType\":\"F\",\"visible\":0,\"status\":0,\"path\":\"#\"}"
+				},
+				"url": {
+					"raw": "http://127.0.0.1:8090/sys_menu/update_menu",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8090",
+					"path": [
+						"sys_menu",
+						"update_menu"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "get_dict_list",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "DWAHEVM/UmZSPABpVzxRaQtjB3EDOwdzVWQLdVRGBDICYAxhDDFaPQ5iDWIBN1Y2U2Y=",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://127.0.0.1:8090/sys_dict_type/get_dict_list",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8090",
+					"path": [
+						"sys_dict_type",
+						"get_dict_list"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "get_dict_type",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "DWAHEVM/UmZSPABpVzxRaQtjB3EDOwdzVWQLdVRGBDICYAxhDDFaPQ5iDWIBN1Y2U2Y=",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://127.0.0.1:8090/sys_dict_type/get_dict_type/1",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8090",
+					"path": [
+						"sys_dict_type",
+						"get_dict_type",
+						"1"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "delete_dict_type",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "DWAHEVM/UmZSPABpVzxRaQtjB3EDOwdzVWQLdVRGBDICYAxhDDFaPQ5iDWIBN1Y2U2Y=",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://127.0.0.1:8090/sys_dict_type/delete_dict_type/24,23",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8090",
+					"path": [
+						"sys_dict_type",
+						"delete_dict_type",
+						"24,23"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "update_dict_type",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "DWAHEVM/UmZSPABpVzxRaQtjB3EDOwdzVWQLdVRGBDICYAxhDDFaPQ5iDWIBN1Y2U2Y=",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\"dictName\":\"测试字典名称\",\"dictType\":\"test_dict_name\",\"remark\":\"这是一个测试字典11\",\"status\":0,\"dictId\":25}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://127.0.0.1:8090/sys_dict_type/update_dict_type",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8090",
+					"path": [
+						"sys_dict_type",
+						"update_dict_type"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "get_dict_data_list",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "DWAHEVM/UmZSPABpVzxRaQtjB3EDOwdzVWQLdVRGBDICYAxhDDFaPQ5iDWIBN1Y2U2Y=",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://127.0.0.1:8090/sys_dict_type/get_dict_data_list",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8090",
+					"path": [
+						"sys_dict_type",
+						"get_dict_data_list"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "update_dict_data",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "XTBWQANvAjZQPgBpUDtRaVgwAHZdZQdzBTQEegUXAjQCYAFsW2ZXMF0wVjEDNwFlAzI=",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\"dictSort\":0,\"dictLabel\":\"测试1\",\"dictValue\":1,\"dictType\":\"test_dict_name\",\"cssClass\":\"\",\"listClass\":\"primary\",\"isDefault\":\"Y\",\"remark\":\"这是一个测试标签\",\"status\":0,\"dictCode\":\"121\"}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://127.0.0.1:8090/sys_dict_type/update_dict_data",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8090",
+					"path": [
+						"sys_dict_type",
+						"update_dict_data"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "get_dict_data",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "XTBWQANvAjZQPgBpUDtRaVgwAHZdZQdzBTQEegUXAjQCYAFsW2ZXMF0wVjEDNwFlAzI=",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://127.0.0.1:8090/sys_dict_type/get_dict_data/121",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8090",
+					"path": [
+						"sys_dict_type",
+						"get_dict_data",
+						"121"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "get_dict_data_by_type",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://127.0.0.1:8090/sys_dict_type/get_dict_data_by_type/test_dict_name",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8090",
+					"path": [
+						"sys_dict_type",
+						"get_dict_data_by_type",
+						"test_dict_name"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "delete_dict_data",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "XTBWQANvAjZQPgBpUDtRaVgwAHZdZQdzBTQEegUXAjQCYAFsW2ZXMF0wVjEDNwFlAzI=",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://127.0.0.1:8090/sys_dict_type/delete_dict_data/121,120",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8090",
+					"path": [
+						"sys_dict_type",
+						"delete_dict_data",
+						"121,120"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "get_role_list",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "DGEMGlU5BDBQPgNqUzhXb1w0AXdcZAVxVWRRLwYUBzEGZARpAD1XMFg1B2hWZANjWWk=",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\"roleName\":\"管理员\"}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://127.0.0.1:8090/sys_role/get_role_list",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8090",
+					"path": [
+						"sys_role",
+						"get_role_list"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "get_role",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "DGEMGlU5BDBQPgNqUzhXb1w0AXdcZAVxVWRRLwYUBzEGZARpAD1XMFg1B2hWZANjWWk=",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://127.0.0.1:8090/sys_role/get_role/1",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8090",
+					"path": [
+						"sys_role",
+						"get_role",
+						"1"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "update_role_status",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "DGEMGlU5BDBQPgNqUzhXb1w0AXdcZAVxVWRRLwYUBzEGZARpAD1XMFg1B2hWZANjWWk=",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\"roleId\":4,\"status\":1}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://127.0.0.1:8090/sys_role/update_role_status",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8090",
+					"path": [
+						"sys_role",
+						"update_role_status"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "update_role",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "DGEMGlU5BDBQPgNqUzhXb1w0AXdcZAVxVWRRLwYUBzEGZARpAD1XMFg1B2hWZANjWWk=",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\"roleName\":\"测试角色3\",\"roleKey\":\"tester\",\"roleSort\":0,\"dataScope\":2,\"menuCheckStrictly\":1,\"deptCheckStrictly\":1,\"status\":0}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://127.0.0.1:8090/sys_role/update_role",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8090",
+					"path": [
+						"sys_role",
+						"update_role"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "update_role_data_scope",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "DGEMGlU5BDBQPgNqUzhXb1w0AXdcZAVxVWRRLwYUBzEGZARpAD1XMFg1B2hWZANjWWk=",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\"roleId\":8,\"dataScope\":3}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://127.0.0.1:8090/sys_role/update_role_data_scope",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8090",
+					"path": [
+						"sys_role",
+						"update_role_data_scope"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "delete_role",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "DGEMGlU5BDBQPgNqUzhXb1w0AXdcZAVxVWRRLwYUBzEGZARpAD1XMFg1B2hWZANjWWk=",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://127.0.0.1:8090/sys_role/delete_role/6,7,8",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8090",
+					"path": [
+						"sys_role",
+						"delete_role",
+						"6,7,8"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "get_post_list",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "XDENG1U5AzdRP1I7AWpWblw0A3VdZQF1VWQBfwUXVWNSMFU4XGEFYgtlDG8EOQVnAzQ=",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\"postName\":\"项目经理\"}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://127.0.0.1:8090/sys_post/get_post_list",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8090",
+					"path": [
+						"sys_post",
+						"get_post_list"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "get_post",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "XDENG1U5AzdRP1I7AWpWblw0A3VdZQF1VWQBfwUXVWNSMFU4XGEFYgtlDG8EOQVnAzQ=",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://127.0.0.1:8090/sys_post/get_post/2",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8090",
+					"path": [
+						"sys_post",
+						"get_post",
+						"2"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "update_post",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "AG0NGwRoUWVVOwduVj1VbQ9nBnADO1YiADFUKldFUGZVN1U4ATxRNl8wBGIBMAJhUWo=",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\"postCode\":\"test\",\"postName\":\"测试人员\",\"postSort\":0,\"status\":0,\"remark\":\"测试\",\"postId\":6}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://127.0.0.1:8090/sys_post/update_post",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8090",
+					"path": [
+						"sys_post",
+						"update_post"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "delete_post",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "AG0NGwRoUWVVOwduVj1VbQ9nBnADO1YiADFUKldFUGZVN1U4ATxRNl8wBGIBMAJhUWo=",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://127.0.0.1:8090/sys_post/delete_post/6",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8090",
+					"path": [
+						"sys_post",
+						"delete_post",
+						"6"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "get_dept_list",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "AG0NGwRoUWVVOwduVj1VbQ9nBnADO1YiADFUKldFUGZVN1U4ATxRNl8wBGIBMAJhUWo=",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://127.0.0.1:8090/sys_dept/get_dept_list",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8090",
+					"path": [
+						"sys_dept",
+						"get_dept_list"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "get_dept",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "AG0NGwRoUWVVOwduVj1VbQ9nBnADO1YiADFUKldFUGZVN1U4ATxRNl8wBGIBMAJhUWo=",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://127.0.0.1:8090/sys_dept/get_dept/100",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8090",
+					"path": [
+						"sys_dept",
+						"get_dept",
+						"100"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "get_exclude_dept",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "AG0NGwRoUWVVOwduVj1VbQ9nBnADO1YiADFUKldFUGZVN1U4ATxRNl8wBGIBMAJhUWo=",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://127.0.0.1:8090/sys_dept/get_exclude_dept/177",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8090",
+					"path": [
+						"sys_dept",
+						"get_exclude_dept",
+						"177"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "update_dept",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "AG0NGwRoUWVVOwduVj1VbQ9nBnADO1YiADFUKldFUGZVN1U4ATxRNl8wBGIBMAJhUWo=",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\"parentId\":100,\"ancestors\":\"0,100\",\"deptName\":\"测试节点2\",\"status\":0,\"orderNum\":0,\"deptId\":189}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://127.0.0.1:8090/sys_dept/update_dept",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8090",
+					"path": [
+						"sys_dept",
+						"update_dept"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "delete_dept",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "AG0NGwRoUWVVOwduVj1VbQ9nBnADO1YiADFUKldFUGZVN1U4ATxRNl8wBGIBMAJhUWo=",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://127.0.0.1:8090/sys_dept/delete_dept/189",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8090",
+					"path": [
+						"sys_dept",
+						"delete_dept",
+						"189"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "select_dept_tree",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "AG0NGwRoUWVVOwduVj1VbQ9nBnADO1YiADFUKldFUGZVN1U4ATxRNl8wBGIBMAJhUWo=",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://127.0.0.1:8090/sys_dept/select_dept_tree",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8090",
+					"path": [
+						"sys_dept",
+						"select_dept_tree"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "update_login_info",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "CGVWQFQ4AjZSPFM6B2xQaAlhB3EEPAdzAzJTLQYUUWdTMVY7W2YBZgxpDG5VZFY1VWQ=",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\"userName\":\"netwolf\",\"ipaddr\":\"127.0.0.1\",\"browser\":\"firefox\",\"status\":0,\"loginTime\":\"2023-06-15 10:05:00\",\"os\":\"macOS\",\"msg\":\"登录成功\",\"infoId\":3}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://127.0.0.1:8090/sys_login_info/update_login_info",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8090",
+					"path": [
+						"sys_login_info",
+						"update_login_info"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "get_login_info_list",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "CGVWQFQ4AjZSPFM6B2xQaAlhB3EEPAdzAzJTLQYUUWdTMVY7W2YBZgxpDG5VZFY1VWQ=",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\"userName\":\"netwolf\"}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://127.0.0.1:8090/sys_login_info/get_login_info_list",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8090",
+					"path": [
+						"sys_login_info",
+						"get_login_info_list"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "get_login_info",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "CGVWQFQ4AjZSPFM6B2xQaAlhB3EEPAdzAzJTLQYUUWdTMVY7W2YBZgxpDG5VZFY1VWQ=",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://127.0.0.1:8090/sys_login_info/get_login_info/2",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8090",
+					"path": [
+						"sys_login_info",
+						"get_login_info",
+						"2"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "delete_login_info",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "CGVWQFQ4AjZSPFM6B2xQaAlhB3EEPAdzAzJTLQYUUWdTMVY7W2YBZgxpDG5VZFY1VWQ=",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://127.0.0.1:8090/sys_login_info/delete_login_info/6,5",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8090",
+					"path": [
+						"sys_login_info",
+						"delete_login_info",
+						"6,5"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "clear_login_info",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "CGVWQFQ4AjZSPFM6B2xQaAlhB3EEPAdzAzJTLQYUUWdTMVY7W2YBZgxpDG5VZFY1VWQ=",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://127.0.0.1:8090/sys_login_info/clear_login_info",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8090",
+					"path": [
+						"sys_login_info",
+						"clear_login_info"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "update_oper_log",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "CGVWQFQ4AjZSPFM6B2xQaAlhB3EEPAdzAzJTLQYUUWdTMVY7W2YBZgxpDG5VZFY1VWQ=",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\"title\":\"sys_user\",\"requestMethod\":\"post\",\"businessType\":1,\"status\":0,\"operName\":\"netwolf\",\"operUrl\":\"sys_oper_log/update_oper_log\",\"operIp\":\"127.0.0.1\",\"operParam\":\"hello world\",\"jsonResult\":\"success\",\"errorMsg\":\"测试操作2\",\"operId\":1}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://127.0.0.1:8090/sys_oper_log/update_oper_log",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8090",
+					"path": [
+						"sys_oper_log",
+						"update_oper_log"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "get_oper_log_list",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "CGVWQFQ4AjZSPFM6B2xQaAlhB3EEPAdzAzJTLQYUUWdTMVY7W2YBZgxpDG5VZFY1VWQ=",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\"title\":\"sys\"}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://127.0.0.1:8090/sys_oper_log/get_oper_log_list",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8090",
+					"path": [
+						"sys_oper_log",
+						"get_oper_log_list"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "get_oper_log",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "CGVWQFQ4AjZSPFM6B2xQaAlhB3EEPAdzAzJTLQYUUWdTMVY7W2YBZgxpDG5VZFY1VWQ=",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://127.0.0.1:8090/sys_oper_log/get_oper_log/1",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8090",
+					"path": [
+						"sys_oper_log",
+						"get_oper_log",
+						"1"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "delete_oper_log",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "CGVWQFQ4AjZSPFM6B2xQaAlhB3EEPAdzAzJTLQYUUWdTMVY7W2YBZgxpDG5VZFY1VWQ=",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://127.0.0.1:8090/sys_oper_log/delete_oper_log/1",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8090",
+					"path": [
+						"sys_oper_log",
+						"delete_oper_log",
+						"1"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "clear_oper_log",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "CGVWQFQ4AjZSPFM6B2xQaAlhB3EEPAdzAzJTLQYUUWdTMVY7W2YBZgxpDG5VZFY1VWQ=",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://127.0.0.1:8090/sys_oper_log/clear_oper_log",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8090",
+					"path": [
+						"sys_oper_log",
+						"clear_oper_log"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "monitor/server",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "WDUGEFI+BTFVO143BG9Xbw9nCX9VbVcjBTQKdAUXBTNQMgxhCTVTMgFoUDVXZwFiU2U=",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://127.0.0.1:8090/monitor/server",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8090",
+					"path": [
+						"monitor",
+						"server"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
