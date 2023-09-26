@@ -290,6 +290,152 @@ $ruoyiApiMapper['get']['system']['user'] = "sys_user/get_sys_user_info";
 $ruoyiApiMapper['get']['system']['user']['index'] = "sys_user/get_sys_user_info";
 ```
 
+#### 添加新表
+
+如果给一张表添加基础的增删改查后端代码，可以参考sys_config表的实现过程，假设表名为sys_template
+
+##### 添加model
+
+可参考application/model/sys_config_model.php，在application/model目录下增加一个与表名一致的model，比如sys_template_model.php
+```php
+<?php
+class Sys_template_model extends Model {
+
+    // 将表字段重名为小驼峰模式，即去下划线_，将下划线后的第一个字母大写
+    // 主要是为与java的表示方式一致
+	private $_Vo = "template_id as templateId"
+						.",create_by as createBy,create_time as createTime,update_by as updateBy,update_time as updateTime,remark";
+
+
+    // 重载gets，主要是修改默认的排序方式
+    public function gets($select = '*', $strWhere = NULL, $limit = NULL, $offset = NULL) {
+		return $this->_gets($select,$strWhere,$limit,$offset,"template_id","asc");
+	}
+
+    // 重载gets2，主要是修改默认的排序方式
+	public function gets2($strWhere = NULL, $limit = NULL, $offset = NULL)
+	{
+		return $this->_gets2($this->_configVo,$strWhere,$limit,$offset,"template_id","asc");
+	}
+
+    // 根据需要可定义更多的专有查询函数
+}
+```
+##### 添加controller
+
+可参考application/controller/sys_config.php，在application/controller目录下增加一个与表名一致的controller，比如sys_template.php
+```php
+<?php
+
+class Sys_template extends Controller
+{
+    // 用户model
+    private $User_model = NULL;
+    // 业务model
+    private $Sys_template_model = NULL;
+    // 操作日志model
+	private $Sys_oper_log_model = NULL;
+    public function __construct($params) {
+		parent::__construct($params);
+        $this->User_model = Helper::load_model("Sys_user",$this->db);
+        $this->Sys_template_model = Helper::load_model("Sys_template",$this->db);
+		$this->Sys_oper_log_model = Helper::load_model("Sys_oper_log",$this->db);
+    }
+
+    /**
+     * 列表查询接口
+     * $jsonData 为url?prams形式param部分的数据对象
+     */
+	public function get_template_list($jsonData){
+		$user_id = $this->login_user_id;
+		if (!$user_id) {
+			printAjaxError('username', '会话已失效，请重新登录');
+		}
+	
+        //查询结果
+		$count = $this->Sys_template_model->rowCount2($whereStr);
+		printAjaxList($list,$count ? $count : 0);		
+	}
+
+    /**
+     * 根据id获取详细的数据对象
+     * $templateId 为url/{templateId}形式的templateId部分的数据
+     */ 
+	public function get_template($templateId){
+		$user_id = $this->login_user_id;
+		if (!$user_id) {
+			printAjaxError('username', '会话已失效，请重新登录');
+		}
+		$data = $this->Sys_template_model->get2(array('template_id'=>$templateId));
+		printAjaxData($data);
+	}
+
+    /**
+     * 添加/更新对象
+     * 根据请求参数是否携带对象id确定是更新还是添加
+     */ 
+	public function update_template(){
+		$user_id = $this->login_user_id;
+		if (!$user_id) {
+			printAjaxError('username', '会话已失效，请重新登录');
+		}
+		$jsonData = getJsonData();
+		$userInfo = $this->User_model->get("*",array('user_id'=>$user_id));		
+		$operFields = get_oper_fields("template","post",OPERATE_TYPE_MODIFY,$userInfo ? $userInfo['user_name'] : "",'sys_template/update_template',$jsonData);			
+		if($jsonData ){
+            // 根据请求参数是否携带templateId确定是更新还是添加
+			$templateId = NULL;
+            if(isset($jsonData->templateId)){
+                $templateId = $jsonData->templateId;
+            }
+            // 其它请求参数
+            // ...
+			printAjaxSuccess('',$templateId ? "修改成功" : "添加成功",$operFields,$this->Sys_oper_log_model);
+		}else{
+			printAjaxError("","无效的请求",$operFields,$this->Sys_oper_log_model);
+		}
+	}
+	
+    /**
+     * 根据id逐个删除对象
+     */ 
+	private function delete_template_by_id($configId){
+		$this->Sys_template_model->delete(array('template_id'=>$templateId));
+	}
+    /**
+     * 删除对象
+     * $templateIds为需要删除的对象数组，对应的请求为url/{templateIds}，其中templateIds可为多个id的即可，比如"id1,id2,id3"
+     */ 
+	public function delete_template($templateIds){
+		$user_id = $this->login_user_id;
+		if (!$user_id) {
+			printAjaxError('username', '会话已失效，请重新登录');
+		}
+		$userInfo = $this->User_model->get("*",array('user_id'=>$user_id));		
+		$operFields = get_oper_fields("template","post",OPERATE_TYPE_MODIFY,$userInfo ? $userInfo['user_name'] : "",'sys_template/delete_template',$templateIds);		
+		//执行删除操作
+		printAjaxSuccess("","删除成功",$operFields,$this->Sys_oper_log_model );
+	}	
+}
+
+```
+
+##### 添加若依接口映射表
+
+在application/config/ruoyimapper.php中添加接口映射，比如
+```php
+// 前端请求get类型的URL /system/template/list对应sys_template/get_template_list
+$ruoyiApiMapper['get']['system']['template']['list'] = "sys_template/get_template_list";
+// 前端请求get类型的URL /system/template/{templateId}对应sys_template/get_template
+$ruoyiApiMapper['get']['system']['template']['index'] = "sys_template/get_template";
+// 前端请求post类型的URL /system/template对应sys_template/update_template
+$ruoyiApiMapper['post']['system']['template'] = "sys_template/update_template";
+// 前端请求put类型的URL /system/template对应sys_template/update_template
+$ruoyiApiMapper['put']['system']['template'] = "sys_template/update_template";
+// 前端请求delete类型的URL /system/template对应sys_template/delete_template
+$ruoyiApiMapper['delete']['system']['template'] = "sys_template/delete_template";
+```
+
 ## 演示图
 <table>
     <tr>
