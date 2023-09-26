@@ -23,6 +23,8 @@ class Sys_user extends Controller
 	private $Sys_login_info_model = NULL;
 	private $Sys_oper_log_model = NULL;
 	private $_userVo = "user_name as userName,user_id as userId,nick_name as nickName,email,phonenumber,status,avatar
+	,dept_id as deptId
+	,sex
 	,login_ip as loginIp,login_date as loginDate
 	,del_flag as delFlag,create_by as createBy,create_time as createTime,update_by as updateBy,update_time as updateTime,remark";
 
@@ -112,6 +114,14 @@ class Sys_user extends Controller
 		$jsonData = getJsonData();
 		$loginTime = date('Y-m-d H:i:s',time());
 		if($jsonData ){
+			if(ENABLE_IMAGE_VERIFY_CODE){
+				if (!isset($jsonData->code)){
+					printAjaxError('code', '验证码不能为空');
+				}
+				if(!VerifyCode::check($jsonData->code)){
+					printAjaxError('code', '错误的验证码');
+				}
+			}
 		    if (!isset($jsonData->username) || !$jsonData->username) {
 				$this->_write_login_log("",'用户名不能为空',FAILURE,$loginTime);
 		        printAjaxError('username', '用户名不能为空');
@@ -148,7 +158,8 @@ class Sys_user extends Controller
 				$redis->set($en_user_id,$userInfo['user_id']);
 				$redis->EXPIRE($en_user_id, SESSION_TIME); 
 				$this->_write_login_log($jsonData->username,'登录成功',SUCCESS,$loginTime);
-				printAjaxData($userInfo);
+				//printAjaxData($userInfo);
+				printAjaxRaw(array('code'=>200,'token'=>$en_user_id));	
 			   
 			} else {
 				$this->_write_login_log($jsonData->username,'登录失败',FAILURE,$loginTime);
@@ -163,7 +174,10 @@ class Sys_user extends Controller
 	public function logout(){
 		$user_id = $this->login_user_id;
 		if (!$user_id) {
-			printAjaxError('username', '会话已失效，请重新登录');
+			//printAjaxError('username', '会话已失效，请重新登录');
+			//解决ruoyi的bug，否则假如session失效，又要logout，就会导致logout失败
+			//然后若依的前端页面一直无法返回到登录页面，一直尝试logout
+			printAjaxSuccess('','操作成功');
 		}		
 		$this->redis->set($user_id,"");
 		$userInfo = $this->User_model->get("*",array('user_id'=>$user_id));		
@@ -482,12 +496,16 @@ class Sys_user extends Controller
 		printAjaxRaw(array('user'=>$userInfo,'roles'=>$allRoles));
 	}
 
-	public function update_user_role(){
+	public function update_user_role($params){
 		$user_id = $this->login_user_id;
 		if (!$user_id) {
 			printAjaxError('username', '会话已失效，请重新登录');
 		}
 		$jsonData = getJsonData();
+		if(!$jsonData){
+			//兼容ruoyi的bug，明明请求类型给put，但是传参方式却用的urlparam
+			$jsonData = $params;
+		}
 		$userInfo = $this->User_model->get("*",array('user_id'=>$user_id));		
 		$operFields = get_oper_fields("user","post",OPERATE_TYPE_MODIFY,$userInfo ? $userInfo['user_name'] : "",'sys_user/update_user_role',$jsonData);			
 		if(!$jsonData || !isset($jsonData->userId) ||!$jsonData->userId){
@@ -702,6 +720,12 @@ class Sys_user extends Controller
 				if(!$otherUserId){
 					$fields['nick_name'] = $jsonData->userName;
 				}
+			}
+			if(isset($jsonData->deptId)){
+				$fields['dept_id'] = $jsonData->deptId;
+			}			
+			if(isset($jsonData->sex)){
+				$fields['sex'] = $jsonData->sex;
 			}
 			if(isset($jsonData->remark)){
 				$fields['remark'] = $jsonData->remark;

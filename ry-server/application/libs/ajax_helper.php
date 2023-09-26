@@ -28,12 +28,13 @@ function _write_log($model,$fields,$status,$jsonResult,$errorMsg = NULL){
  * @return	json
  */
 if ( ! function_exists('printAjaxError')) {
-	function printAjaxError($field =  '', $message = '',$fields = NULL,$model = NULL) {
+	function printAjaxError($field =  '', $message = '',$fields = NULL,$model = NULL,$code = 1) {
 		$messageArr = array(
 		              'success'=> false,
 		              'field'=>   $field,
-                      'message'=> $message,
-					  'code'=>0
+                      'message'=> $message,					  
+					  'msg'=> $message,	//兼容ruoyi
+					  'code'=>$code	//兼容ruoyi，code不能为0，否则会触发前端bug（const code = res.data.code || 200;）
                       );
         $str = json_encode($messageArr);
 		if($fields){

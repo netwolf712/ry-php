@@ -38,6 +38,7 @@ require APP . 'libs/user_helper.php';
 require APP . 'core/application.php';
 require APP . 'core/redis.php';
 require APP . 'core/database/DB.php';
+require APP . 'core/verifycode.php';
 require APP . 'core/controller.php';
 require APP . 'core/model.php';
 // start the application

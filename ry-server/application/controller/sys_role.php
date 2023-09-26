@@ -15,12 +15,14 @@ class Sys_role extends Controller
     private $User_model = NULL;
     private $Sys_role_model = NULL;
 	private $Sys_role_menu_model = NULL;
+	private $Sys_role_dept_model = NULL;
 	private $Sys_oper_log_model = NULL;
     public function __construct($params) {
 		parent::__construct($params);
         $this->User_model = Helper::load_model("Sys_user",$this->db);
         $this->Sys_role_model = Helper::load_model("Sys_role",$this->db);
 		$this->Sys_role_menu_model = Helper::load_model("Sys_role_menu",$this->db);
+		$this->Sys_role_dept_model = Helper::load_model("Sys_role_dept",$this->db);
 		$this->Sys_oper_log_model = Helper::load_model("Sys_oper_log",$this->db);
     }
 	public function get_role_list($jsonData){
@@ -126,7 +128,7 @@ class Sys_role extends Controller
 			if(isset($jsonData->delFlag)){
 				$fields['del_flag'] = $jsonData->delFlag;
 			}
-			if(isset($jsonData->delFlag)){
+			if(isset($jsonData->remark)){
 				$fields['remark'] = $jsonData->remark;
 			}		
 			if(isset($jsonData->roleId) && !empty($jsonData->roleId)){
@@ -171,7 +173,16 @@ class Sys_role extends Controller
 			$fields = array('data_scope'=>$jsonData->dataScope
 			,'update_by'=>$userInfo['user_name']
 			,'update_time'=>date("YmdHis", time()));
+			$fields['dept_check_strictly'] = $jsonData->deptCheckStrictly;
+			$fields['menu_check_strictly'] = $jsonData->menuCheckStrictly;
 			$this->Sys_role_model->save($fields,array('role_id'=>$jsonData->roleId));
+			//更新sys_role_dept表
+			$this->Sys_role_dept_model->delete(array('role_id'=>$jsonData->roleId));
+			if(isset($jsonData->deptIds)){
+				foreach($jsonData->deptIds as $key=>$value){
+					$this->Sys_role_dept_model->save(array('role_id'=>$jsonData->roleId,'dept_id'=>$value));
+				}
+			}
 			printAjaxSuccess('',"修改成功",$operFields,$this->Sys_oper_log_model);
 		}else{
 			printAjaxError('', '无效的请求',$operFields,$this->Sys_oper_log_model);

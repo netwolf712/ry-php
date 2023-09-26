@@ -201,6 +201,16 @@ class Sys_dept extends Controller
 			,'dept_name'=>$jsonData->deptName			
 			,'status'=>$jsonData->status
 			,'order_num'=>$jsonData->orderNum);
+
+			if(isset($jsonData->leader)){
+				$fields['leader'] = $jsonData->leader;
+			}
+			if(isset($jsonData->phone)){
+				$fields['phone'] = $jsonData->phone;
+			}	
+			if(isset($jsonData->email)){
+				$fields['email'] = $jsonData->email;
+			}					
 			if($deptId){
 				$fields['update_by'] = $userInfo['user_name'];
 				$fields['update_time'] = date("YmdHis", time());
@@ -284,11 +294,8 @@ class Sys_dept extends Controller
 		}
 		return $children;
 	}
-	public function select_dept_tree($jsonData){
-		$user_id = $this->login_user_id;
-		if (!$user_id) {
-			printAjaxError('username', '会话已失效，请重新登录');
-		}
+
+	private function _select_dept_tree($jsonData,$user_id){
 		$whereStr = "del_flag = 0";
 		//$jsonData = getJsonData();
 		if($jsonData){
@@ -315,6 +322,40 @@ class Sys_dept extends Controller
 				$list[$key]['deptId'] = intval($value['deptId']);
 			}
 		}
-		printAjaxData($this->_get_dept_tree($list,100));
+		return $this->_get_dept_tree($list,100);
+	}
+	public function select_dept_tree($jsonData){
+		$user_id = $this->login_user_id;
+		if (!$user_id) {
+			printAjaxError('username', '会话已失效，请重新登录');
+		}
+		printAjaxData($this->_select_dept_tree($jsonData,$user_id));
+	}
+
+	public function get_dept_tree_by_role_id($roleId){
+		$user_id = $this->login_user_id;
+		if (!$user_id) {
+			printAjaxError('username', '会话已失效，请重新登录');
+		}
+		if(!$roleId){
+			printAjaxError('roleId', '角色id不能为空');
+		}
+		$deptTree = $this->_select_dept_tree(NULL,$user_id);
+		$role = $this->Sys_role_model->get("*",array('role_id'=>$roleId));
+		if(!$role){
+			printAjaxError('role', '无效的角色信息');
+		}
+		$whereStr = "del_flag = 0 and dept_id in (select dept_id from sys_role_dept where role_id = {$roleId})";
+		if($role["dept_check_strictly"]){
+			$whereStr .= " and dept_id not in (select d.parent_id from sys_dept d inner join sys_role_dept rd on d.dept_id = rd.dept_id and rd.role_id = {$roleId})";
+		}
+		$checkedDepts = $this->Sys_dept_model->gets2($whereStr,1000000,0);
+		$checkedKeys = array();
+		if($checkedDepts){
+			foreach($checkedDepts as $key=>$value){
+				array_push($checkedKeys,intval($value['deptId']));
+			}
+		}
+		printAjaxRaw(array('checkedKeys'=>$checkedKeys,'depts'=>$deptTree));
 	}
 }

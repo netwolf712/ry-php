@@ -33,7 +33,7 @@ class Sys_oper_log extends Controller
 			}
 			if(isset($jsonData->title) && !empty($jsonData->title)){
 				$whereStr = $whereStr." and title like '%".trim($jsonData->title)."%'"; 
-			}
+			}		
 			if(isset($jsonData->operName) && !empty($jsonData->operName)){
 				$whereStr = $whereStr." and oper_name like '%".trim($jsonData->operName)."%'"; 
 			}

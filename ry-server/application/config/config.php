@@ -123,3 +123,26 @@ define('URL', URL_PROTOCOL . URL_DOMAIN . URL_SUB_FOLDER);
 	 * JWT密钥
 	 */
 	define('JWT_SERCRET',"ryphpGpkVBR9TMcm");		
+
+	/**
+	 * 是否使用图形验证码
+	 * true 使用
+	 * false 不使用 
+	 */
+	define('ENABLE_IMAGE_VERIFY_CODE',true);	
+
+	/**
+	 * 防重提交 redis key
+	 */
+	define('REPEAT_SUBMIT_KEY',"repeat_submit:");
+
+	/**
+	 * 限流 redis key
+	 */
+	define('RATE_LIMIT_KEY',"rate_limit:");
+
+	/**
+	 * 登录账户密码错误次数 redis key
+	 */
+	define('PWD_ERR_CNT_KEY',"pwd_err_cnt:");
+	

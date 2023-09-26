@@ -38,7 +38,7 @@ const user = {
       return new Promise((resolve, reject) => {
         login(username, password, code, uuid).then(res => {
           if(res.code == 200){
-            setToken(res.data.token)
+            setToken(res.token)
             commit('SET_TOKEN', res.token)
           }else{
             alert(res.message);

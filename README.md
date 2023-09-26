@@ -25,7 +25,7 @@
 - docs：存放一些文本文件
     ry-php.postman_collection.json：后端接口说明，导入postman即可使用
 - ry-server：用php编写的后端代码
-- ry-ui：从[ruiyi-vue](https://github.com/yangzongzhuan/RuoYi-Vue) 改造而来的前端代码
+- ry-ui：从[ruiyi-vue](https://github.com/yangzongzhuan/RuoYi-Vue) 改造而来的前端代码，准备弃用，已完全支持ruoyi-vue最新版本（v3.8.6）的前端页面。建议大家直接下载ruoyi-vue的代码，直接拿ruoyi-ui目录的代码进行配套使用。
 - sql：数据库脚本
     ry_php.db: SQLite数据库，在ry-server/application/config/database.php中配置正确的路径即可直接使用。
     ry_php.sqlite：生成SQLite数据库的脚本，可通过SQLite工具导入生成所需的数据库
@@ -257,6 +257,37 @@ sys_user.model只需封装跟业务相关的查询函数即可，比如
 // $whiteList[controller][method] = 1; //=非0，表示对应控制器的某个方法无须登录校验
 // 比如
 $whiteList['sys_user']['login'] = 1;
+```
+
+
+#### 若依接口兼容
+
+在application/config/ruoyimapper.php中增加了php版本的接口与若依前端接口的映射表，通过映射表可实现若依前端页面的零修改兼容，目的是方便大家实现后端服务器的平移替换，当php版本的不再满足需求时，可直接换回若依后端。
+
+实现原理很简单，就是在application/core/application.php中实现了url请求转换函数convertRuoyiUrl，在真正解析url前，先把若依前端的url格式转换成php服务端相应请求的url格式。
+
+映射表的配置规则举例
+```php
+// ruoyiApiMapper为映射表
+// 第一个键值为请求类型，如post、get、put、delete，要求为小写
+// 后面的键值给请求url，比如前端页面的请求为 /system/user/list
+// url中作为参数的部分不用作为键值
+// 比如/system/user/1，其中的1对应/system/user/{userId}，是作为userId这个参数，所以只需取/system/user即可
+// 则第二个键值为system，第三个键值为user，第四个键值给list
+// 映射的值为在php服务端的请求路径
+// 比如前端页面的请求路径为/system/user/list，请求类型为get
+// 对应的php服务端路径为sys_user/get_sys_user_list
+// 则映射表表达式为
+$ruoyiApiMapper['get']['system']['user']['list'] = "sys_user/get_sys_user_list";
+
+// 不能存在路径完全一样的映射键值，假如出现前面几个键值完全一致时，则可以在后面再补增一个为index的键值
+// 比如前端页面的请求路径为/system/user/1，请求类型为get
+// 原先写成映射表达式为
+$ruoyiApiMapper['get']['system']['user'] = "sys_user/get_sys_user_info";
+
+// 但因['get']['system']['user']这部分键值与$ruoyiApiMapper['get']['system']['user']['list'] = "sys_user/get_sys_user_list";前面部分完全一致
+// 所以需要改造成如下映射关系
+$ruoyiApiMapper['get']['system']['user']['index'] = "sys_user/get_sys_user_info";
 ```
 
 ## 演示图

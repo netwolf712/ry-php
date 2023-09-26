@@ -76,6 +76,54 @@ class Application
         $obj = (object)$fields;
         return $obj;
     }
+
+    /**
+     * 将ruoyi的url转换成php格式
+     */
+    private function convertRuoyiUrl($orgUrl){
+        //$url = filter_var($url, FILTER_SANITIZE_URL);
+        $url = explode('/', $orgUrl);
+            
+        //加载url映射表
+        if ( ! defined('ENVIRONMENT') OR ! file_exists($file_path = APPPATH.'config/'.ENVIRONMENT.'/ruoyimapper.php'))
+        {
+            if ( ! file_exists($file_path = APPPATH.'config/ruoyimapper.php'))
+            {
+                show_error('The configuration file ruoyimapper.php'.' does not exist.');
+            }
+        }
+            
+        include($file_path); 
+
+        $requestMethod = strtolower($_SERVER['REQUEST_METHOD']);
+        $requestMethodArray = $ruoyiApiMapper[$requestMethod];
+        $orgControl = "";
+        $dstControl = "";
+        $tmp = $requestMethodArray;
+        for($i = 0; $i < count($url); $i++){
+            if(!isset($tmp[$url[$i]])){
+                break;
+            }
+            if($orgControl){
+                $orgControl .= "/";
+            }
+            $orgControl .= $url[$i];
+            $tmp = $tmp[$url[$i]];
+            if(is_string($tmp)){
+                $dstControl = $tmp;
+                break;
+            }
+        }
+        if(!empty($orgControl) && empty($dstControl)){
+            if(isset($tmp['index']) && is_string($tmp['index'])){
+                $dstControl = $tmp['index'];
+            }
+        }
+        if(!empty($orgControl) && !empty($dstControl)){
+            return str_replace($orgControl,$dstControl,$orgUrl);
+        }
+        return $orgUrl;
+    }
     /**
      * Get and split the URL
      */
@@ -86,6 +134,8 @@ class Application
             $uriArray = explode('?', $requestURI);
             // split URL
             $url = trim($uriArray[0], '/');
+            //转换ruoyi的url
+            $url = $this->convertRuoyiUrl($url);
             //$url = filter_var($url, FILTER_SANITIZE_URL);
             $url = explode('/', $url);
 
@@ -97,7 +147,7 @@ class Application
 
             // Remove controller and action from the split URL
             unset($url[0], $url[1]);
-
+            
             // Rebase array keys and store the URL params
             $this->url_params = array_values($url);
 
@@ -149,7 +199,7 @@ class Application
         //否则需要进行登录校验
         $user_id = getUserId();
         if(!$user_id){
-            printAjaxError('403', '未授权的请求');
+            printAjaxError('', '未被授权的请求',NULL,NULL,401);
         }
         return $user_id;
     }

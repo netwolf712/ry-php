@@ -49,7 +49,7 @@ export function logout() {
 // 获取验证码
 export function getCodeImg() {
   return request({
-    url: 'verifycode/index/2',
+    url: 'verify_code/index',
     headers: {
       isToken: false
     },

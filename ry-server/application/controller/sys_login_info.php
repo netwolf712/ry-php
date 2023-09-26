@@ -18,12 +18,11 @@ class Sys_login_info extends Controller
 		parent::__construct($params);
         $this->Sys_login_info_model = Helper::load_model("Sys_login_info",$this->db);
     }
-	public function get_login_info_list(){
+	public function get_login_info_list($jsonData){
 		$user_id = $this->login_user_id;
 		if (!$user_id) {
 			printAjaxError('username', '会话已失效，请重新登录');
 		}
-		$jsonData = getJsonData();
 		$whereStr = "(1=1)";
 		$pageNum = 1;
 		$pageSize = 10;		
