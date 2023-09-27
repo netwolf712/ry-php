@@ -49,17 +49,33 @@ class Upload extends Controller
 				return $fileInfo['extension'];
 			}
 		}
-		if(isset($uploadFile['type']) && $uploadFile['type'] == 'image/jpeg'){
-			return "jpeg";
+		if(isset($uploadFile['type'])){
+			if( $uploadFile['type'] == 'image/jpeg'){
+				return "jpeg";
+			}else if($uploadFile['type'] == 'image/png'){
+				return "png";
+			}else{
+				return "gif";
+			}
 		}
 				
 		return "";
 	}
 
-	private function _updload_file(){
+	/**
+	 * 上传文件
+	 * @params fileKey 用于标明$_FILES里存放文件的对象的键值
+	 * 比如上传头像时，fileKey = "avatarfile"
+	 * 上传普通文件时，fileKey = "file"
+	 */
+	private function _updload_file($fileKey){
 		if (!empty($_FILES)) {
-			if (isset($_FILES['file']) && is_uploaded_file($_FILES['file']['tmp_name']) && $_FILES['file']['error'] == 0) {
-				$uploadFile = $_FILES['file'];
+			if(!isset($_FILES[$fileKey])){
+				return NULL;
+			}
+			$file = $_FILES[$fileKey];
+			if (is_uploaded_file($file['tmp_name']) && $file['error'] == 0) {
+				$uploadFile = $file;
 				$fileExt = $this->_getFileExt($uploadFile);
 				$tmpFileName = date('/Y/m/d/', time()).date('YmdHis', time()) . rand(100000, 999999).'.'.$fileExt;
 				$uploadFilePath = UPLOAD_PATH.$tmpFileName;
@@ -70,11 +86,14 @@ class Upload extends Controller
 				}
 				return NULL;
 			}else{
-				print_r($_FILES);
 			}
 		}
 		return NULL;
 	}
+
+	/**
+	 * 上传头像
+	 */
 	public function upload_avatar() {
 		$user_id = $this->login_user_id;
 		if (!$user_id) {
@@ -82,10 +101,16 @@ class Upload extends Controller
 		}
 		$userInfo = $this->User_model->get("*",array('user_id'=>$user_id));		
 		$operFields = get_oper_fields("upload","post",OPERATE_TYPE_MODIFY,$userInfo ? $userInfo['user_name'] : "",'upload/upload_avatar',$_FILES);		
-		$filePath = $this->_updload_file();
+		$filePath = $this->_updload_file("avatarfile");
 		if($filePath){
+			//将路径存入数据库
+			$this->User_model->save(array('avatar'=>$filePath
+										,'update_by'=>$userInfo['user_name']
+										,'update_time'=>date("YmdHis", time()))
+										,array('user_id'=>$user_id));
 			printAjaxRaw(array('fileName'=>$filePath
 			, 'encode_file_path'=>preg_replace(array('/\//', '/\./'), array('_', '~'), $filePath)
+			, 'imgUrl'=>$filePath	//兼容若依接口
 			, 'code'=>200),$operFields,$this->Sys_oper_log_model);
 		}else{
 			printAjaxError('file', '上传失败',$operFields,$this->Sys_oper_log_model);

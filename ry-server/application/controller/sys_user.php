@@ -318,12 +318,15 @@ class Sys_user extends Controller
 			printAjaxError('', '无效的请求',$operFields,$this->Sys_oper_log_model);
 		}
 	}
-	public function update_profile_password(){
+	public function update_profile_password($params){
 		$user_id = $this->login_user_id;
 		if (!$user_id) {
 			printAjaxError('username', '会话已失效，请重新登录');
 		}
 		$jsonData = getJsonData();
+		if(!$jsonData){
+			$jsonData = $params;
+		}
 		$userInfo = $this->User_model->get("*",array('user_id'=>$user_id));
 		$operFields = get_oper_fields("user","post",OPERATE_TYPE_MODIFY,$userInfo ? $userInfo['user_name'] : "",'sys_user/update_profile_password',$jsonData);
 		if($jsonData){
